@@ -7,12 +7,13 @@ import {PageTitle} from '@my-org/ui-header';
 import React, { useState, useEffect } from 'react'
 
 import {ApiResponse, API_URL} from '@my-org/api-interface';
+import axios from 'axios';
 
 
 export const App = () => {
   const [apiResponse, setApiResponse] = useState<ApiResponse>({message: 'Loading...'});
   useEffect(() => {
-    fetch(API_URL).then(r=> r.json()).then(setApiResponse);
+    axios.get(API_URL).then(r=> r.data).then(setApiResponse);
   }, [])
 
   return (
